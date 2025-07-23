@@ -37,7 +37,7 @@ export const loginNormalUser = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ message: "Incorrect password" });
 
-    const token = jwt.sign({ id: user._id, role: "normaluser" },process.env.JWT_SECRETE, { expiresIn: "1d" });
+    const token = jwt.sign({ id: user._id, role: "normaluser" },process.env.JWT_SECRETE);
 
     res.status(200).json({ token, user,"role":"normaluser" });
   } catch (error) {
